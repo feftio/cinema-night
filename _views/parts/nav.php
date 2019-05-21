@@ -24,13 +24,13 @@
 		</ul>
 		<div class="navbar__form" id="navbar__form">
 
-			<?php if (!session_is("logged_user")) { ?>
+			<?php if (!session_is("user")) { ?>
 			<a class="navbar__form__login" href="/login">
 				<i class="fal fa-sign-in"></i>
 				<span class="navbar__form__span">Войти</span>
 			</a>
 			<?php } else { ?>
-			<a class="navbar__form__cabinet" href="/cabinet">
+			<a class="navbar__form__cabinet <?php if (G::var('menu__active') == 'cabinet') echo 'menu__active'; ?>" href="/cabinet">
 				<i class="fas fa-user"></i>
 				<span class="navbar__form__span">Кабинет</span>
 			</a>

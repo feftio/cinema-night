@@ -10,7 +10,7 @@ class CabinetController
 
 	public function actionIndex()
 	{
-		if (session_is('logged_user'))
+		if (session_is("user"))
 		{
 			G::setvar(True, [
 				'menu__active' => 'cabinet',
@@ -21,12 +21,40 @@ class CabinetController
 					'parts/footer.css']
 				]);
 
-			view('cabinet.php');
+			view("cabinet.php");
 		}
 		else
 		{
 			header("Location: /login");
 		}
+	}
+
+	public function actionCh()
+	{
+		Post::catch(function()
+		{
+			Ajax::catch(function()
+			{
+				$data = $_POST;
+
+				$login = R::count("users", "login = ?", array($data["login"]));
+
+				if ( ($login > 0) && (Session::get("user", "login") == $data["login"]) )
+				{
+					echo json_encode(["error" => "Логин " . $data["login"] . " уже занят!"]);
+				}
+				else
+				{
+
+				}
+
+			});
+		}, False);
+	}
+
+	public function actionLogout()
+	{
+		unset($_SESSION["user"]);
 	}
 
 //	**************************************************

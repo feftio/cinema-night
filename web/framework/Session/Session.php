@@ -18,6 +18,12 @@ class Session
 		$_SESSION[$key] = $value;
 	}
 
+	public static function get($key, $value)
+	{
+		$val = (unserialize($_SESSION[$key])->$value);
+		return $val;
+	}
+
 	public static function destoy()
 	{
 		session_destroy();

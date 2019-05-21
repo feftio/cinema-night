@@ -11,7 +11,7 @@ class LoginController
 	public function actionIndex()
 	{
 
-		if (!session_is('logged_user'))
+		if (!session_is("user"))
 		{
 			G::setvar(True, [
 				'css' => [
@@ -28,12 +28,7 @@ class LoginController
 
 	}
 
-	public function actionunsetlogin()
-	{
-		unset($_SESSION['logged_user']);
-	}
-
-	public function actionchlogin()
+	public function actionChlogin()
 	{
 
 		Post::catch(function()
@@ -47,7 +42,7 @@ class LoginController
 				{
 					if (password_verify($data["password"], $user->password))
 					{
-						$_SESSION['logged_user'] = $user;
+						$_SESSION["user"] = serialize($user);
 						echo json_encode(["success" => "Вы авторизованы!"]);
 					}
 					else
@@ -63,7 +58,7 @@ class LoginController
 		});
 	}
 
-	public function actionchreg()
+	public function actionChreg()
 	{
 		Post::catch(function()
 		{
@@ -109,17 +104,18 @@ class LoginController
 					R::store($user);
 
 					$profile = R::dispense('profile');
-					$profile->login    = $data["login"];
-					$profile->name     = "";
-					$profile->surname  = "";
-					$profile->photo    = "";
-					$profile->phone    = "";
+					$profile->login      = $data["login"];
+					$profile->name       = "";
+					$profile->surname    = "";
+					$profile->patronymic = "";
+					$profile->photo      = "";
+					$profile->phone      = "";
 					R::store($profile);
 
-					$ticket = R::dispense('ticket');
-					$ticket-> = $data["login"];
-					
-					R::store($ticket);
+					//$ticket = R::dispense('ticket');
+					//$ticket-> = $data["login"];
+
+					//R::store($ticket);
 
 
 					echo json_encode(["success" => "Регистрация прошла успешно!"]);

@@ -83,41 +83,88 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 300px;
-  width: 750px;
+  height: 600px;
+  min-width: 550px;
   background-color: #C24848;
   border-radius: 50px;
   z-index: 10;
   padding: 20px;
-  background-color: #fff;
+  background-color: #75c181;
   box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.10);
 }
 
+.p-login {
+  display: block;
+  font-size: 20px;
+  font-family: 'Amatic SC';
+  color: #FFFFFF;
+}
+
 .p-login h2 {
-  min-width: 100%;
+  display: block;
+  font-size: 25px;
+  text-align: left;
+  padding-left: 10px;
 }
 
 .p-login input {
   display: block;
-  max-width: 100%;
+  text-align: left;
   width: 100%;
-  padding-left: 50px;
-  border-bottom: 1px solid black;
-  font-size: 15px;
-  font-family: 'Amatic SC';
-  color: #373737;
+  font-size: 25px;
+  font-family: 'PF BeauSans Pro Light';
+  color: #3B3B3B;
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  border: 1px solid #E1E1E1;
+  padding-left: 20px;
 }
 
-.p-login {
-  display: flex;
-  font-size: 20px;
-  font-family: 'Amatic SC';
-  color: #373737;
+.butts {
+  display: block;
+  text-align: center;
+}
+
+.button {
+  font-family: 'PF BeauSans Pro Light';
+  display: inline-block;
+  width: 100%;
+  background-color: #F8A13F;
+  border-radius: 20px;
+  font-size: 25px;
+  color: #FFFFFF;
+}
+
+.button-save {
+  background-color: #FF5733;
+  height: 60px;
+}
+
+.button-save:hover {
+  background-color: #FF6B4B;
+  transition: all 0.2s;
+}
+
+.button-change {
+  background-color: #F8A13F;
+  height: 60px;
+}
+
+.button-change:hover {
+  background-color: #F9AF5B;
+  transition: all 0.2s;
 }
 
 .photo {
   display: block;
   height: 1200px;
+}
+
+.responce {
+  text-align: center;
+  font-family: 'PF BeauSans Pro Light';
+  font-size: 20px;
+  color: #E62F2F;
 }
 
 
