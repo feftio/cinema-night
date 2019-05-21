@@ -26,6 +26,10 @@
 						<span class="eye"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
 					</div>
 
+					<div class="result_form" id="result_form_log">
+						
+					</div>
+
 					<div class="sign">
 						<button class="button green" id="do-sign-in" name="do-sign-in">Войти</button>	
 					</div>
@@ -61,7 +65,7 @@
 						<input class="input-style" id="password-3" type="password" name="password_r" placeholder="Повторите пароль">
 					</div>
 
-					<div class="result_form" id="result_form">
+					<div class="result_form" id="result_form_reg">
 						
 					</div>
 					

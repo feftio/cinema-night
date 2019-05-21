@@ -40,6 +40,8 @@ class Csrf
 	{
 		self::$key = Config::getcsrf('key');
 
+		
+
 		if ((isset($_POST[self::key()]) || !empty($_POST[self::key()])) && ($_SERVER['REQUEST_METHOD'] === 'POST'))
 		{
 			if (!(hash_equals(Session::get(self::key()), $_POST[self::key()])))

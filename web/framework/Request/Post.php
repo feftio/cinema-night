@@ -4,15 +4,20 @@
  */
 class Post
 {
-	public static function catch($UserFunction)
+	public static function catch($UserFunction, $withoutError=True)
 	{
 		if ($_SERVER['REQUEST_METHOD'] == 'POST')
 		{
-			if ( (isset($_POST)) && (!empty($_POST)) )
+			$UserFunction();
+		}
+		else
+		{
+			if ($withoutError)
 			{
-				$UserFunction($_POST);
+				header('HTTP/1.1 400 Bad Request');
+				header('Content-Type: application/json; charset=UTF-8');
+				die();
 			}
-			die();
 		}
 	}
 }

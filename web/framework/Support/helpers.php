@@ -29,3 +29,13 @@ if (! function_exists('view'))
     }
 
 }
+
+if (! function_exists('session_is'))
+{
+
+    function session_is($name)
+    {
+        return Session::is($name);
+    }
+
+}

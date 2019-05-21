@@ -176,6 +176,7 @@
 
 .result_form {
 	display: block;
+	line-height: 1.5;
 	text-align: center;
 	color: #EF4D4D;
 	margin-top: 20px;

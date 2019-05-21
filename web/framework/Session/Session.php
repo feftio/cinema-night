@@ -9,7 +9,7 @@ class Session
 	{
 		if (!isset($_SESSION))
 		{
-			@session_start();
+			session_start();
 		}
 	}
 
@@ -18,19 +18,18 @@ class Session
 		$_SESSION[$key] = $value;
 	}
 
-	public static function get($key)
-	{
-		if (isset($_SESSION[$key]))
-		{
-			return $_SESSION[$key];
-        }
-        return NULL;
-	}
-
 	public static function destoy()
 	{
 		session_destroy();
 	}
-}
 
-Session::start();
+	public static function is($name)
+	{
+		if (isset($_SESSION[$name]))
+		{
+			return true;
+		}
+
+		return false;
+	}
+}

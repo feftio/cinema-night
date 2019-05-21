@@ -23,10 +23,19 @@
 			</li>
 		</ul>
 		<div class="navbar__form" id="navbar__form">
+
+			<?php if (!session_is("logged_user")) { ?>
 			<a class="navbar__form__login" href="/login">
 				<i class="fal fa-sign-in"></i>
 				<span class="navbar__form__span">Войти</span>
 			</a>
+			<?php } else { ?>
+			<a class="navbar__form__cabinet" href="/cabinet">
+				<i class="fas fa-user"></i>
+				<span class="navbar__form__span">Кабинет</span>
+			</a>
+			<?php } ?>
+
 		</div>
 	</div>
 </nav>

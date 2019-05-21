@@ -77,45 +77,83 @@ $(document).ready(function()
 
         $.ajax(
         {
-            url: "login",
+            url: "/login/chreg",
             type: "POST",
             data: $(this).serialize(),
             success: function(response)
             {
                 var string = "";
-                $('#result_form').html(string);
+                $('#result_form_reg').html(string);
                 result = $.parseJSON(response);
                 $.each(result, function(keyError, value)
                 {
-                    string += value + '<br>';
+                    if (keyError == 'success')
+                    {
+                        $('#result_form_reg').css("color", "green");
+                        string = value;
+                        setTimeout(function () 
+                        {
+                            window.location.href = window.location.href;
+                        }, 2000);
+                    }
+                    else
+                    {
+                        $('#result_form_reg').css("color", "red");
+                        string += '* ' + value + '<br>';
+                    }
                 });
-                $('#result_form').html(string);
+
+                $('#result_form_reg').html(string);
+
+
             },
             error: function(response)
             {
-                result = $.parseJSON(response);
-                window.location.href = 'http://cinema-night/';
-                $('#result_form').html('Ошибка. Данные не отправлены.');
+                $('#result_form_reg').css("color", "red");
+                $('#result_form_reg').html('Ошибка. Данные не отправлены.');
             }
         });
         return false;
     });
 
+
      $("#loginForm").submit(function()
     {
         $.ajax(
         {
-            url: "login",
+            url: "/login/chlogin",
             type: "POST",
             data: $(this).serialize(),
             success: function(response) 
             {
+                var string = "";
+                $('#result_form_log').html(string);
                 result = $.parseJSON(response);
-                $('#result_form').html(result);
+
+                $.each(result, function(keyError, value)
+                {
+                    if (keyError == 'success')
+                    {
+                        $('#result_form_log').css("color", "green");
+                        string = value;
+                        setTimeout(function () 
+                        {
+                            document.location.href = "/";
+                        }, 2000);
+                    }
+                    else
+                    {
+                        $('#result_form_log').css("color", "red");
+                        string += '* ' + value + '<br>';
+                    }
+                });
+
+                $('#result_form_log').html(string);
+
             },
             error: function(response)
             {
-                $('#result_form').html('Ошибка. Данные не отправлены.');
+                $('#result_form_log').html('Ошибка. Данные не отправлены.');
             }
         });
         return false;

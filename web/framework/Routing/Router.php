@@ -60,13 +60,13 @@ class Router
     {
         $uri = $this->getURI();
         $isThere = false;
-        Csrf::catch();
+        //Csrf::catch();
 
             foreach (Config::getroutes() as $uriPattern => $path) 
             {
-                if (preg_match('/^' . $uriPattern . '$/', $uri)) 
+                if (preg_match('#^' . $uriPattern . '$#', $uri)) 
                 {
-                    $internalRoute = preg_replace('/^' . $uriPattern . '$/', $path, $uri);       
+                    $internalRoute = preg_replace('#^' . $uriPattern . '$#', $path, $uri);       
                     $segments = explode('/', $internalRoute);
 
                     $controllerName = ucfirst(array_shift($segments));

@@ -99,6 +99,18 @@
 	user-select: none;
 }
 
+
+.navbar__form__cabinet {
+	display: inline-block;
+	font-size: 30px;
+	margin-right: 5px;
+	color: #FFFFFF;
+}
+
+.navbar__form__cabinet:hover {
+	color: #F3BC46;
+}
+
 .navbar__form__login {
 	display: inline-block;
 	font-size: 30px;
