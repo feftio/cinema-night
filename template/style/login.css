@@ -1,0 +1,259 @@
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.wrapper {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	width: 100%;
+	padding: 50px 20px 20px 20px;
+	overflow: hidden;
+	background-color: rgba(244,244,244,0.8);
+}
+
+.wrapper:after {
+	content: '';
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-image: url(/template/image/glasses.png);
+	background-size: 100px 100px;
+	background-repeat: repeat;
+	opacity: 0.15;
+	z-index: -1;
+}
+
+/*-----------------*/
+
+.big-image {
+	position: relative;
+	display: block;
+    min-height: 100vh;
+    width: 50%;
+    background-image: url(/template/image/5-1.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.big-image:after {
+	content: '';
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(77,77,77,0.7);
+}
+
+/*-----------------*/
+
+.line-for-arrow {
+	display: block;
+	height: 50px;
+	width: 100%;
+	background-color: #FDE389;
+}
+
+.arrow-back {
+	position: absolute;
+	display: block;
+	left: 30px;
+	top: 20px;
+	color: #484848;
+}
+
+/*-----------------*/
+
+.form__wrapper {
+	position: relative;
+	display: block;
+	min-height: 360px;
+	min-width: 100px;
+	width: 420px;
+	padding: 70px 40px 30px 40px;
+	border-radius: 20px;
+	background-color: #FFFFFF;
+	user-select: none;
+}
+
+.form {
+	display: none;
+}
+
+.active__form {
+	display: block !important;
+}
+
+.logo__circle {
+	position: absolute;
+	display: block;
+	height: 100px;
+	width: 100px;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 200px;
+	background-color: #FFFFFF;
+}
+
+.logo__image {
+	position: absolute;
+	display: block;
+	top: 53%;
+	left: 50%;
+	opacity: 0.8;
+	transform: translate(-50%, -50%);
+}
+
+.form__welcome {
+	display: block;
+	font-family: PF BeauSans Pro Light;
+	font-size: 30px;
+	text-align: center;
+	font-weight: bold;
+	color: #7A7A7A;
+}
+
+.out-input {
+	position: relative;
+	border-bottom: 2px solid #969696;
+}
+
+.input-style {
+	display: block;
+	font-family: PF BeauSans Pro Light;
+	height: 40px;
+	width: 100%;
+	padding: 0 5px;
+	line-height: 1.2;
+	font-size: 15px;
+	color: #5A5A5A;
+	background: transparent;
+}
+
+.eye {
+	display: none;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	color: #5A5A5A;
+	font-size: 14px;
+}
+
+.eye-active {
+	display: block !important;
+}
+
+.email {
+	margin-top: 20px;
+}
+
+.login {
+	margin-top: 20px;
+}
+
+.password {
+	margin-top: 20px;
+}
+
+.sign {
+	margin-top: 20px;
+}
+
+.pop {
+	display: block;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.result_form {
+	display: block;
+	text-align: center;
+	color: #EF4D4D;
+	margin-top: 20px;
+}
+
+.button {
+	display: block;
+	text-decoration: none;
+	font-family: PF BeauSans Pro Light;
+	font-size: 20px;
+	color: #fff;
+	line-height: 1.2;
+    text-transform: uppercase;
+    margin: 0 auto;
+    width: 100%;
+    height: 50px;
+    border-radius: 20px;
+}
+
+.button:hover {
+	cursor: pointer;
+	background-color: #FFB923;
+}
+
+.button:active {
+	background-color: #FEB311;
+	outline: 0;
+}
+
+.button:focus {
+	outline: 0;
+}
+
+.clip-sign-in {
+	cursor: pointer;
+	color: #6ECD67;
+}
+
+.clip-sign-up {
+	cursor: pointer;
+	color: #B93838;
+}
+
+.red {
+	background-color: #B93838;
+}
+
+.green {
+	background-color: #8BD885;
+}
+
+/*-----------------*/
+
+@media (max-width: 540px) {
+
+	.form__wrapper {
+		min-width: 100px;
+		/*min-height: 480px;*/
+	}
+
+}
+
+@media (max-width: 350px) {
+
+	.form__welcome {
+		font-size: 20px;
+	}
+
+	.form__wrapper {
+		padding-left: 10px;
+		padding-right: 10px;
+		/*min-height: 460px;*/
+	}
+
+}
+
+@media (max-width: 1025px) {
+	.big-image {
+		display: none;
+	}
+}

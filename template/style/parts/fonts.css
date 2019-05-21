@@ -1,0 +1,14 @@
+@font-face {
+    font-family: Cinzel;
+    src: url(/template/style/lib/fonts/Cinzel.ttf);
+}
+
+@font-face {
+    font-family: Amatic SC;
+    src: url(/template/style/lib/fonts/AmaticSC-Regular.ttf);
+}
+
+@font-face {
+    font-family: PF BeauSans Pro Light;
+    src: url(/template/style/lib/fonts/BeauSans.ttf);
+}
