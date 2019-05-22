@@ -38,11 +38,14 @@ class LoginController
 				$data = $_POST;
 
 				$user = R::findOne("users", "login = ?", array($data["login"]));
+				$profile = R::findOne("profile", "login = ?", array($data["login"]));
+
 				if ($user)
 				{
 					if (password_verify($data["password"], $user->password))
 					{
 						$_SESSION["user"] = serialize($user);
+						$_SESSION["profile"] = serialize($profile);
 						echo json_encode(["success" => "Вы авторизованы!"]);
 					}
 					else
@@ -113,7 +116,7 @@ class LoginController
 					R::store($profile);
 
 					//$ticket = R::dispense('ticket');
-					//$ticket-> = $data["login"];
+					//$ticket->login = $data["login"];
 
 					//R::store($ticket);
 

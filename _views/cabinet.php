@@ -20,22 +20,26 @@
 			</div>
 		
 			<section class="box-of-data">
-				<form id="profileForm" method="POST" action=" ">
-					<div class="boxer">
+
+				<div class="boxer-wrapper">
+					<form class="boxer" id="profileForm" method="POST" action=" ">
 						<div class="p-login">
 							<h2>Логин: </h2><input type="text" name="login" value="<?php echo Session::get('user', 'login') ?>" disabled>
 						</div>
 						<div class="p-login">
-							<h2>Имя: </h2><input type="text" name="name" disabled>
+							<h2>Email: </h2><input type="text" name="email" value="<?php echo Session::get('user', 'email') ?>" disabled>
 						</div>
 						<div class="p-login">
-							<h2>Фамилия: </h2><input type="text" name="sername" disabled>
+							<h2>Имя: </h2><input type="text" name="name" value="<?php echo Session::get('profile', 'name') ?>" disabled>
 						</div>
 						<div class="p-login">
-							<h2>Отчество: </h2><input type="text" name="patronymic" disabled>
+							<h2>Фамилия: </h2><input type="text" name="surname" value="<?php echo Session::get('profile', 'surname') ?>" disabled>
 						</div>
 						<div class="p-login">
-							<h2>Номер телефона: </h2><input type="text" name="phone" disabled>
+							<h2>Отчество: </h2><input type="text" name="patronymic" value="<?php echo Session::get('profile', 'patronymic') ?>" disabled>
+						</div>
+						<div class="p-login">
+							<h2>Номер телефона: </h2><input type="text" name="phone" value="<?php echo Session::get('profile', 'phone') ?>" disabled>
 						</div>
 						<div class="p-login responce" id="responce">
 
@@ -44,8 +48,12 @@
 							<button class="button-save button" id="button-save" name="button-save" style="display: none;">Сохранить</button>
 							<button class="button-change button" id="button-change" name="button-change button" style="display: block;">Изменить</button>
 						</div>
-					</div>
-				</form>
+					</form>
+				</div>
+
+				<div class="logout-box">
+					
+				</div>
 			</section>
 
 			<div class="photo">
@@ -69,12 +77,13 @@ $(document).ready(function()
 
 	$("#button-change").click(function(event)
 	{
+
 		event.preventDefault();
 		$(".p-login input").attr("disabled", false);
-		$(".p-login input").css("background-color", "#FFFAC2");
-		$("#button-change").hide("fast", function(){
-			$("#button-save").show("fast");
-		});
+		$(".p-login input").css("background-color", "#FFB2A1");
+		$("#button-change").hide();
+		$("#button-save").show();
+
 	});
 
 	 $("#profileForm").submit(function()
@@ -86,20 +95,35 @@ $(document).ready(function()
             data: $(this).serialize(),
             success: function(response) 
             {
-            	var string = "";
-                $('#responce').html(string);
+                $('#responce').html("");
                 result = $.parseJSON(response);
 
                 $.each(result, function(keyError, value)
                 {
-                	if (keyError == 'error')
+                	if (keyError == 'success')
                     {
-                        string = value;
+                        $('#responce').css("color", "green");
+                        $('#responce').html(value);
+   
+                        setTimeout(function () 
+                        {
+                        	$('#responce').html("");
+                        	$(".p-login input").attr("disabled", true);
+                        	$(".p-login input").css("background-color", "#FFFFFF");
+
+                        	$("#button-save").hide();
+                        	$("#button-change").show();
+                        	
+
+                        }, 2000);
+                    }
+                    else
+                    {
+                        $('#responce').css("color", "red");
+                        $('#responce').html(value);
+
                     }
                 });
-
-                $('#responce').html(string);
-                //$('#responce').html(result["error"]);
 
             },
             error: function(response)

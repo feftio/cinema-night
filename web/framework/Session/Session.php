@@ -5,13 +5,6 @@
 
 class Session
 {
-	public static function start()
-	{
-		if (!isset($_SESSION))
-		{
-			session_start();
-		}
-	}
 
 	public static function set($key, $value)
 	{
@@ -20,8 +13,14 @@ class Session
 
 	public static function get($key, $value)
 	{
-		$val = (unserialize($_SESSION[$key])->$value);
-		return $val;
+		$val = @unserialize($_SESSION[$key])->$value;
+
+		if ($value === 'b:0;' || $val !== false)
+		{
+			return $val;
+		}
+
+		return $_SESSION[$key];
 	}
 
 	public static function destoy()

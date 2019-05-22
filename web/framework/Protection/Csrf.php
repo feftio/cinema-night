@@ -33,6 +33,7 @@ class Csrf
 
 	public static function field()
 	{
+		self::generate();
 		echo '<input type="hidden" name="' . self::key() . '" value="' . self::token() . '">';
 	}
 
@@ -40,6 +41,7 @@ class Csrf
 	{
 		self::$key = Config::getcsrf('key');
 
+		//if Session::get()
 		
 
 		if ((isset($_POST[self::key()]) || !empty($_POST[self::key()])) && ($_SERVER['REQUEST_METHOD'] === 'POST'))
