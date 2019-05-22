@@ -43,10 +43,12 @@
 						<div class="p-login responce" id="responce">
 							
 						</div>
+
 						<div class="p-login butts">
 							<button class="button-save button" id="button-save" name="button-save" style="display: none;">Сохранить</button>
 							<button class="button-change button" id="button-change" name="button-change button" style="display: block;">Изменить</button>
 						</div>
+
 					</form>
 				</div>
 
@@ -56,27 +58,81 @@
 						<button class="button-logout button" id="button-logout">Выйти</button>
 					</form>
 				</div>
-
-				<div class="photo">
-					
-				</div>
 			</section>
-		
+
+			<section class="content">
+
+				<div class="choose-text-block">
+					<h2 class="choose-text">Выберите место</h2>
+				</div>
+
+				<div class="hole-block">
+					<div class="cinema room">
+						
+					</div>
+				</div>
+				<div>
+					<p>Выбран:<div></div></p>
+				</div>
+
+			</section>
 		</div>
-
-
-
 
 		<?php View::render('parts/footer.php') ?>
 
 	<?php View::render('parts/scripts.php') ?>
 
 </body>
-<script type="text/javascript">
 
+
+
+
+<script type="text/javascript">
 $(document).ready(function()
 {
+	var CinemaStruct = {
+		'1' : [16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16]
+	}
 
+	var Taken = [];
+
+	Cinema1 = '';
+
+
+	$.each(CinemaStruct["1"], function(row, numberOfSeats) {
+
+		cinemaHallRow =  '<span class="num-column">Ряд№:' + (row+1) + '</span>';
+
+		for (i = 1; i <= numberOfSeats; i++) {
+			cinemaHallRow += 
+			'<div class="seat" data-row="' +
+			(row+1) + '" data-seat="' +
+			i + '">' + i + '</div>';
+		}
+
+		Cinema1 += cinemaHallRow + '<div class="passageBetween">&nbsp;</div>';
+	});
+
+
+$('.room').html(Cinema1);
+
+$('.seat').on('click', function(e) {
+	$(e.currentTarget).toggleClass('bay');
+	showBaySeat();
+});
+
+function showBaySeat() {
+  result = '';
+  $.each( $('.seat.bay'), function(key, item) {
+    result += '<div class="ticket">Ряд: ' +
+      $(item).data().row + ' Место:' +
+      $(item).data().seat + '</div>';
+  });
+
+  $('.result').html(result);
+}
+
+//-------------------------------------------------
 	$("#button-change").click(function(event)
 	{
 
@@ -140,8 +196,6 @@ $(document).ready(function()
     });
 
 });
-
-
 </script>
 
 </html>
