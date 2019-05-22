@@ -71,17 +71,15 @@
 						
 					</div>
 				</div>
-				<div>
-					<p>Выбран:<div></div></p>
+				<div class="block-take">
+					<button class="button-take button">Забронировать</button>
 				</div>
-
 			</section>
 		</div>
 
 		<?php View::render('parts/footer.php') ?>
 
 	<?php View::render('parts/scripts.php') ?>
-
 </body>
 
 

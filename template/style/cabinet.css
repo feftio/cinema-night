@@ -315,6 +315,25 @@ hr:after {
 
 /*----------------------------*/
 
+.choose-text-block {
+  display: block;
+  
+}
+
+
+.block-take {
+  display: block;
+  width: 70%;
+  padding: 20px;
+  background-color: #EDEDED;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.button-take {
+  background-color: #FF5733;
+  height: 60px;
+}
 
 
 
@@ -340,6 +359,12 @@ hr:after {
 
   .cinema {
     width: 470px;
+  }
+
+  .block-take {
+    width: 100%;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
   }
 
 }

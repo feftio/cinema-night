@@ -75,6 +75,7 @@ class CabinetController
 	public function actionLogout()
 	{
 		unset($_SESSION["user"]);
+		unset($_SESSION["profile"]);
 
 		if (!($_GET["redirect"] === ""))
 		{
