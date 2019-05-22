@@ -38,7 +38,7 @@ class CabinetController
 				$data = $_POST;
 				$user = R::count("users", "login = ?", array($data["login"]));
 
-				if ( ($user > 0) && (Session::get("user", "login") !== $data["login"]) && ($data["login"] ===  '') )
+				if ( ($user > 0) && ( Session::get("user", "login") != $data["login"] ) )
 				{
 					echo json_encode(["error" => "Логин " . $data["login"] . " уже занят!"]);
 				}
@@ -75,6 +75,17 @@ class CabinetController
 	public function actionLogout()
 	{
 		unset($_SESSION["user"]);
+
+		if (!($_GET["redirect"] === ""))
+		{
+			$redirect = $_GET["redirect"];
+		}
+		else
+		{
+			$redirect = "/login";
+		}
+
+		header("Location: " . $redirect);
 	}
 
 //	**************************************************

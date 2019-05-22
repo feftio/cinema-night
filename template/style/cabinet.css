@@ -6,6 +6,28 @@ h2 {
 
 }
 
+hr {
+  padding: 0;
+  height: 15px;
+  border: none;
+  border-top: medium double #D6D6D6;
+  color: #D6D6D6;
+  text-align: center;
+  width: 100%;
+  border-radius: 100%;
+  transform: rotate(180deg);
+}
+
+hr:after {
+  content: "§";
+  display: inline-block;
+  position: relative;
+  top: -0.7em;
+  font-size: 1.5em;
+  padding: 0 0.5em;
+  background: #FFFFFF;
+}
+
 .header {
   display: block;
   height: 70px;
@@ -89,7 +111,7 @@ h2 {
 .box-of-data {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
   margin-top: 30px;
@@ -146,19 +168,18 @@ h2 {
   font-family: 'PF BeauSans Pro Light';
   display: inline-block;
   width: 100%;
-  background-color: #F8A13F;
   border-radius: 20px;
   font-size: 25px;
   color: #FFFFFF;
 }
 
 .button-save {
-  background-color: #FF5733;
+  background-color: #75c181;
   height: 60px;
 }
 
 .button-save:hover {
-  background-color: #FF6B4B;
+  background-color: #75c181;
   transition: all 0.2s;
 }
 
@@ -172,11 +193,6 @@ h2 {
   transition: all 0.2s;
 }
 
-.photo {
-  display: block;
-  height: 1200px;
-}
-
 .responce {
   text-align: center;
   font-family: 'PF BeauSans Pro Light';
@@ -185,7 +201,28 @@ h2 {
 }
 
 .logout-box {
+  position: relative;
   display: block;
+  height: 100px;
+  min-width: 550px;
+  border-radius: 50px;
+  z-index: 10;
+  padding: 20px;
+  background-color: #454545;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.10);
 }
 
+.button-logout {
+  background-color: #FF5733;
+  height: 60px;
+}
 
+.button-logout:hover {
+  background-color: #FF6B4B;
+  transition: all 0.2s;
+}
+
+.photo {
+  display: block;
+  height: 1200px;
+}

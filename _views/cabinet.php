@@ -18,7 +18,6 @@
 			<div class="box__photo">
 				<img class="user-photo" src="../template/image/5-1.jpg">
 			</div>
-		
 			<section class="box-of-data">
 
 				<div class="boxer-wrapper">
@@ -42,7 +41,7 @@
 							<h2>Номер телефона: </h2><input type="text" name="phone" value="<?php echo Session::get('profile', 'phone') ?>" disabled>
 						</div>
 						<div class="p-login responce" id="responce">
-
+							
 						</div>
 						<div class="p-login butts">
 							<button class="button-save button" id="button-save" name="button-save" style="display: none;">Сохранить</button>
@@ -52,14 +51,17 @@
 				</div>
 
 				<div class="logout-box">
+					<form action="/cabinet/logout" method="GET">
+						<input type="hidden" name="redirect" value="/login">
+						<button class="button-logout button" id="button-logout">Выйти</button>
+					</form>
+				</div>
+
+				<div class="photo">
 					
 				</div>
 			</section>
-
-			<div class="photo">
-				
-			</div>
-				
+		
 		</div>
 
 
@@ -80,7 +82,7 @@ $(document).ready(function()
 
 		event.preventDefault();
 		$(".p-login input").attr("disabled", false);
-		$(".p-login input").css("background-color", "#FFB2A1");
+		$(".p-login input").css("background-color", "#D7F5DC");
 		$("#button-change").hide();
 		$("#button-save").show();
 
@@ -115,13 +117,16 @@ $(document).ready(function()
                         	$("#button-change").show();
                         	
 
-                        }, 2000);
+                        }, 1000);
                     }
                     else
                     {
                         $('#responce').css("color", "red");
                         $('#responce').html(value);
 
+                        setTimeout(function(){
+                        	$('#responce').html("");
+                        }, 1000);
                     }
                 });
 

@@ -98,6 +98,12 @@ $(document).ready(function()
                     }
                     else
                     {
+                        if (keyError == "thereis")
+                        {
+                            $("#password-2").val("");
+                            $("#password-3").val("");
+                        }
+                        
                         $('#result_form_reg').css("color", "red");
                         string += '* ' + value + '<br>';
                     }

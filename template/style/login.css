@@ -203,11 +203,6 @@
 
 .button:active {
 	background-color: #FEB311;
-	outline: 0;
-}
-
-.button:focus {
-	outline: 0;
 }
 
 .clip-sign-in {

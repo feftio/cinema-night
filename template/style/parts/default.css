@@ -69,3 +69,11 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
+
+button:active {
+	outline: 0;
+}
+
+button:focus {
+	outline: 0;
+}
