@@ -72,7 +72,7 @@
 					</div>
 				</div>
 				<div class="block-take">
-					<button class="button-take button">Забронировать</button>
+					<button class="button-take button" id="button-take">Забронировать</button>
 				</div>
 			</section>
 		</div>
@@ -87,14 +87,17 @@
 
 <script type="text/javascript">
 $(document).ready(function()
-{
+{	
+
+
+	//-------------------------------------------------
+
 	var CinemaStruct = {
 		'1' : [16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16]
 	}
 
 	var Taken = [];
-
-	Cinema1 = '';
+		Cinema1 = '';
 
 
 	$.each(CinemaStruct["1"], function(row, numberOfSeats) {
@@ -129,6 +132,92 @@ function showBaySeat() {
 
   $('.result').html(result);
 }
+
+//-------------------------------------------------
+	$.ajax({
+			type: "POST",
+			url: "/cabinet/seats",
+			cache: false,
+
+			success: function(responce) {
+				var arr = [];
+				$.each(JSON.parse(responce), function(key, item) {
+					arr.push(JSON.parse(item["seat"])[0]);
+				});
+
+				/*$('.bay').each(function(i,elem) {
+					answ += elem.getAttribute("data-row") + ',' + elem.getAttribute("data-seat");
+					arr.push(answ);
+					answ = "";
+				});*/
+			}
+		});
+
+//-------------------------------------------------
+
+	$("#button-take").click(function(event)
+	{
+
+		event.preventDefault();
+
+		//console.log($('.bay'));
+
+		var answ = "";
+		var arr = [];
+
+		$('.bay').each(function(i,elem) {
+			answ += elem.getAttribute("data-row") + ',' + elem.getAttribute("data-seat");
+			arr.push(answ);
+			answ = "";
+		});
+
+		console.log(arr);
+		console.log($(arr).serializeArray());
+
+		$.ajax({
+			type: "POST",
+			url: "/cabinet/taken",
+			data:{data: arr},
+			cache: false,
+
+			success: function(responce) {
+				//console.log(JSON.parse(responce));
+				$.each(JSON.parse(responce), function(key1, item1) {
+
+					console.log(JSON.parse(item1["seat"]));
+					/*$.each(item1, function(key, item) {
+						console.log(key + ' ' + item);
+					});*/
+				});
+			}
+
+		});
+
+
+	/*$.each(JSON.parse(responce), function(key1, item1) {
+		$.each(item1, function(key, item) {
+			console.log(key + ' ' + item);
+		});
+	});*/
+
+
+
+	});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //-------------------------------------------------
 	$("#button-change").click(function(event)

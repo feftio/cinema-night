@@ -9,6 +9,8 @@ return
 	'ticket([0-9]{0,10}$)' => 'ticket/index/$1',
 	'login/chlogin' => 'login/chlogin',
 	'login/chreg' => 'login/chreg',
+	'cabinet/taken' => 'cabinet/taken',
+	'cabinet/seats' => 'cabinet/seats',
 	'cabinet/logout' => 'cabinet/logout',
 	'cabinet/ch' => 'cabinet/ch',
 	'login' => 'login/index',

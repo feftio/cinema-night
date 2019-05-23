@@ -89,6 +89,35 @@ class CabinetController
 		header("Location: " . $redirect);
 	}
 
+	public function actionTaken()
+	{
+		Post::catch(function() {
+			Ajax::catch(function() {
+				$data = $_POST["data"];
+
+				/*$seat = R::dispense('seat');
+				$seat->login = 'fefted';
+				$seat->seat  = json_encode($data);
+				$seat->status = 0;
+				R::store($seat);*/
+
+				$seat = R::find("seat", "login = ?", array(Session::get('user', 'login')));
+				echo(json_encode($seat));
+			});
+		});
+	}
+
+	public function actionSeats()
+	{
+		Post::catch(function() {
+			Ajax::catch(function() {
+	
+				$seat = R::findAll('seat');
+				echo(json_encode($seat));
+			});
+		});
+	}
+
 //	**************************************************
 //	**************************************************
 
