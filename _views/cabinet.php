@@ -102,7 +102,14 @@ $(document).ready(function()
 
 	$.each(CinemaStruct["1"], function(row, numberOfSeats) {
 
-		cinemaHallRow =  '<span class="num-column">Ряд№:' + (row+1) + '</span>';
+		if ((row+1)<10)
+		{
+			cinemaHallRow =  '<span class="num-column">Ряд№:' + (row+1) + '</span>&nbsp;&nbsp;&nbsp;';
+		}
+		else
+		{
+			cinemaHallRow =  '<span class="num-column">Ряд№:' + (row+1) + '</span>&nbsp;';
+		}
 
 		for (i = 1; i <= numberOfSeats; i++) {
 			cinemaHallRow += 
@@ -134,6 +141,7 @@ function showBaySeat() {
 }
 
 //-------------------------------------------------
+
 	$.ajax({
 			type: "POST",
 			url: "/cabinet/seats",
@@ -172,7 +180,6 @@ function showBaySeat() {
 		});
 
 		console.log(arr);
-		console.log($(arr).serializeArray());
 
 		$.ajax({
 			type: "POST",

@@ -72,6 +72,10 @@ class CabinetController
 		}, False);
 	}
 
+
+//	**************************************************
+//	**************************************************
+
 	public function actionLogout()
 	{
 		unset($_SESSION["user"]);
@@ -89,10 +93,28 @@ class CabinetController
 		header("Location: " . $redirect);
 	}
 
+//	**************************************************
+//	**************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+//	**************************************************
+//	**************************************************
+
 	public function actionTaken()
 	{
 		Post::catch(function() {
 			Ajax::catch(function() {
+				
 				$data = $_POST["data"];
 
 				/*$seat = R::dispense('seat');

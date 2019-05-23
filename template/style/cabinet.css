@@ -272,6 +272,7 @@ hr:after {
   border-radius: 50px;
   background-color: #EDEDED;
   overflow: auto;
+  user-select: none;
 }
 
 .cinema {
@@ -279,12 +280,13 @@ hr:after {
   display: block;
   margin: 0 auto;
   text-align: center;
-  width: 540px;
+  /*width: 540px;*/
 
 }
 
 .seat {
   display: inline-block;
+  font-family: 'PF BeauSans Pro Light';
   width: 26px;
   height: 26px;
   text-align: center;
@@ -292,6 +294,8 @@ hr:after {
   margin: 2px;
   border-radius: 5px;
   cursor: pointer;
+  padding: 2px;
+  font-size: 12px;
 }
 
 .passageBetween {
@@ -335,8 +339,12 @@ hr:after {
   height: 60px;
 }
 
-
-
+.num-column {
+  font-family: 'PF BeauSans Pro Light';
+  display: inline-block;
+  border-bottom: 1px solid black;
+  font-size: 12px;
+}
 
 
 
