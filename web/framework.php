@@ -18,6 +18,7 @@
 	require_once ROOT . '/web/framework/Protection/Crypt.php';
 	require_once ROOT . '/web/framework/Protection/Csrf.php';
 	require_once ROOT . '/web/framework/Routing/Router.php';
+	require_once ROOT . '/web/framework/Support/Str.php';
 	require_once ROOT . '/web/framework/Support/helpers.php';
 //	*******************************************************
 	(new Router())->run();

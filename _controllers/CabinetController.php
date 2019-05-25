@@ -114,20 +114,36 @@ class CabinetController
 	{
 		Post::catch(function() {
 			Ajax::catch(function() {
-				
-				$data = $_POST["data"];
 
-				/*$seat = R::dispense('seat');
-				$seat->login = 'fefted';
-				$seat->seat  = json_encode($data);
-				$seat->status = 0;
-				R::store($seat);*/
+				if (!isset($_POST["data"]))
+				{
+					echo json_encode(["error" => "Выберите место!"]);
+				}
+				else
+				{
+					$data = $_POST["data"];
+					$seat = R::dispense('seat');
+					$seat->login  = Session::get('user', 'login');
+					$seat->seat   = json_encode($data);
+					$seat->iden   = Str::random(0,0,9);
+					$seat->code   = Str::random(2,2,6);
+					$seat->status = 0;
+					R::store($seat);
+					/*unset($seat);
+					$seat = R::find("seat", "login = ?", array(Session::get('user', 'login')));
+					echo(json_encode($seat));*/
+					echo json_encode(["success" => "Запрос отправлен. Ждите звонка!"]);
+				}
 
-				$seat = R::find("seat", "login = ?", array(Session::get('user', 'login')));
-				echo(json_encode($seat));
 			});
 		});
 	}
+
+
+
+
+
+
 
 	public function actionSeats()
 	{

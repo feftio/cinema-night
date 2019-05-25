@@ -72,6 +72,9 @@
 					</div>
 				</div>
 				<div class="block-take">
+					<div class="responce" id="responce-taken">
+						
+					</div>
 					<button class="button-take button" id="button-take">Забронировать</button>
 				</div>
 			</section>
@@ -188,14 +191,18 @@ function showBaySeat() {
 			cache: false,
 
 			success: function(responce) {
-				//console.log(JSON.parse(responce));
-				$.each(JSON.parse(responce), function(key1, item1) {
-
-					console.log(JSON.parse(item1["seat"]));
-					/*$.each(item1, function(key, item) {
-						console.log(key + ' ' + item);
-					});*/
-				});
+				result = $.parseJSON(response);
+				$.each(result, function(key, value)
+                {
+                	if (key == "error")
+                	{
+                		$("#responce-taken").html(responce);
+                	}
+                	else
+                	{
+                		$("#responce-taken").html(responce);
+                	}
+                });
 			}
 
 		});
@@ -210,16 +217,6 @@ function showBaySeat() {
 
 
 	});
-
-
-
-
-
-
-
-
-
-
 
 
 
