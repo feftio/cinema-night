@@ -15,9 +15,11 @@
 
 		</section>
 		<div class="container">
+
 			<div class="box__photo">
 				<img class="user-photo" src="../template/image/5-1.jpg">
 			</div>
+
 			<section class="box-of-data">
 
 				<div class="boxer-wrapper">
@@ -58,6 +60,7 @@
 						<button class="button-logout button" id="button-logout">Выйти</button>
 					</form>
 				</div>
+
 			</section>
 
 			<section class="content">
@@ -78,10 +81,75 @@
 					<button class="button-take button" id="button-take">Забронировать</button>
 				</div>
 			</section>
-		</div>
+
+		
+
+
+<?php 
+$num = 0;
+$seats = R::find("seat", "login = ? AND status = 1", array(Session::get('user', 'login')));
+?>
+
+<?php if (!empty($seats)) { ?>
+
+			<section class="content">
+				<div class="choose-block">
+					<h2 class="choose-text">Забронированные билеты</h2>
+				</div>
+
+				<div class="tickets-block">
+
+
+	<?php	foreach ($seats as $seat) { 
+				$num++;
+
+		?>
+
+					<div class="ticket">
+						<h2 class="num-box"><?php echo $num; ?>.</h2>
+						<a href="/ticket<?php echo $seat->iden; ?>" class="barcode">
+							<i class="fas fa-qrcode"></i>
+						</a>
+
+						<div class="ticket-card">
+							<a href="/ticket<?php echo $seat->iden; ?>">/<?php echo $seat->iden; ?></a>
+						</div>
+
+						<div class="places">
+						<?php
+
+						foreach (json_decode($seat->seat) as $value) {
+							$row = explode(",", $value)[0];
+							$column = explode(",", $value)[1];
+						?>	
+
+							<p>Ряд: <?php echo $row; ?></p>
+							<p class="box-place">Место: <?php echo $column; ?></p>
+
+
+						<?php } ?>
+
+
+
+						
+
+						</div>
+
+				</div>
+			
+
+	<?php } ?>
+
+				</div>
+			</section>
+
+<?php } ?>
+
+
+	</div>
 
 		<?php View::render('parts/footer.php') ?>
-
+</div>
 	<?php View::render('parts/scripts.php') ?>
 </body>
 
@@ -150,17 +218,29 @@ function showBaySeat() {
 			url: "/cabinet/seats",
 			cache: false,
 
-			success: function(responce) {
+			success: function(response) {
 				var arr = [];
-				$.each(JSON.parse(responce), function(key, item) {
-					arr.push(JSON.parse(item["seat"])[0]);
+
+				$.each(JSON.parse(response), function(key, item) {
+					arr.push(JSON.parse(item["seat"]));
 				});
 
-				/*$('.bay').each(function(i,elem) {
-					answ += elem.getAttribute("data-row") + ',' + elem.getAttribute("data-seat");
-					arr.push(answ);
-					answ = "";
-				});*/
+				$('.seat').each(function(index1,elem1) {
+
+					$.each(arr, function(index2, elem2) {
+
+						$.each(elem2, function(index3, elem3) {
+
+							if ((elem1.getAttribute("data-row") == elem3.split(",")[0]) && (elem1.getAttribute("data-seat") == elem3.split(",")[1]))
+							{
+								$(elem1).addClass('bought');
+								$(elem1).html("*");
+							}
+						});
+
+					});
+
+				});
 			}
 		});
 
@@ -191,18 +271,32 @@ function showBaySeat() {
 			cache: false,
 
 			success: function(responce) {
-				result = $.parseJSON(response);
-				$.each(result, function(key, value)
-                {
-                	if (key == "error")
-                	{
-                		$("#responce-taken").html(responce);
-                	}
-                	else
-                	{
-                		$("#responce-taken").html(responce);
-                	}
-                });
+				result = JSON.parse(responce);
+
+				$.each(result, function(key, item) {
+
+					if (key == "error")
+					{
+						$('#responce-taken').css("color", "red");
+						$('#responce-taken').html(item);
+					}
+					else
+					{
+						$('#responce-taken').css("color", "green");
+						$('#responce-taken').html(item);
+					}
+
+					setTimeout(function () 
+                    {
+                    	$('.bay').removeClass('bay');
+                    	$('#responce-taken').html("");
+                    }, 1800);
+
+				});
+
+
+
+
 			}
 
 		});

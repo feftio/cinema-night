@@ -115,7 +115,7 @@ class CabinetController
 		Post::catch(function() {
 			Ajax::catch(function() {
 
-				if (!isset($_POST["data"]))
+				if (empty($_POST["data"]))
 				{
 					echo json_encode(["error" => "Выберите место!"]);
 				}
@@ -150,7 +150,7 @@ class CabinetController
 		Post::catch(function() {
 			Ajax::catch(function() {
 	
-				$seat = R::findAll('seat');
+				$seat = R::find("seat", "status = 1");
 				echo(json_encode($seat));
 			});
 		});
