@@ -64,6 +64,10 @@ class CabinetController
 					unset($_SESSION["profile"]);
 					$_SESSION["profile"] = serialize($profile);
 					R::store($profile);
+
+					$seat = R::findOne("seat", "login = ?", array($oldlogin));
+					$seat->login = $data["login"];
+					R::store($seat);
 					
 					echo json_encode(["success" => "Сохранено!"]);
 				}

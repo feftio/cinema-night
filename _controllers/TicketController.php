@@ -2,7 +2,6 @@
 /**
  * 
  */
-//include ROOT . '/_models/Ticket.php';
 class TicketController 
 {
 
@@ -11,20 +10,22 @@ class TicketController
 
 	public function actionIndex($params)
 	{
-		//include_once ROOT . '/config/db/db_tables.php';
-		//include_once ROOT . '/config/pdf/pdf_ticket.php';
+		$bean  = R::findOne("seat", "login = ? AND iden = ? AND status = 1", array(Session::get("user", "login"), $params[0]));
 
-		/*$IDEN  = $params[0];
-		$LOGIN = "Alex54";
-		$CODE  = "sdsdgs";*/
+		if (!session_is("user") || (is_null($bean)))
+		{
+			header("Location: /");
+		}
+		else
+		{
 
-		
-		echo $IDEN;
+			$IDEN  = $params[0];
+			$LOGIN = Session::get("user", "login");
+			$CODE = $bean->code;
 
-		exit();
-		$RANDOM_STRING = Ticket::checkingILC($IDEN, $LOGIN, $CODE, $TABLE_NAME);
-
-		include_once ROOT . '/views/ticketing.php';
+			define('RANDOM_STRING', $CODE);
+			view("ticketing.php");
+		}
 	}
 
 //	**************************************************

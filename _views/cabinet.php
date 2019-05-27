@@ -234,7 +234,7 @@ function showBaySeat() {
 							if ((elem1.getAttribute("data-row") == elem3.split(",")[0]) && (elem1.getAttribute("data-seat") == elem3.split(",")[1]))
 							{
 								$(elem1).addClass('bought');
-								$(elem1).html("*");
+								$(elem1).html("X");
 							}
 						});
 

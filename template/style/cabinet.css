@@ -240,10 +240,6 @@ hr:after {
 
 /*----------------------------*/
 
-.choose-text-block {
-  display: block;
-}
-
 .choose-text {
   display: block;
   font-family: 'PF BeauSans Pro Light';
@@ -330,7 +326,6 @@ hr:after {
   display: block;
   text-align: center;
   background-color: #EDEDED;
-  height: 60px;
   width: 80%;
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
@@ -391,15 +386,13 @@ hr:after {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  min-height: 400px;
   min-width: 150px;
   width: 250px;
   margin-right: 20px;
   margin-bottom: 20px;
   padding: 30px;
   background-color: #FFFFFF;
-  border-top-right-radius: 50px;
-  border-top-left-radius: 50px;
+  border-radius: 50px;
 }
 
 .choose-block {
