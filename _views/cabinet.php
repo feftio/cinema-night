@@ -17,7 +17,7 @@
 		<div class="container">
 
 			<div class="box__photo">
-				<img class="user-photo" src="../template/image/5-1.jpg">
+				<img class="user-photo" src="../template/image/logoCN1.png">
 			</div>
 
 			<section class="box-of-data">
@@ -196,8 +196,12 @@ $(document).ready(function()
 $('.room').html(Cinema1);
 
 $('.seat').on('click', function(e) {
-	$(e.currentTarget).toggleClass('bay');
-	showBaySeat();
+	if (!$(this).hasClass('bought'))
+	{
+		$(e.currentTarget).toggleClass('bay');
+		showBaySeat();
+	}
+		
 });
 
 function showBaySeat() {
@@ -324,6 +328,10 @@ function showBaySeat() {
 		event.preventDefault();
 		$(".p-login input").attr("disabled", false);
 		$(".p-login input").css("background-color", "#D7F5DC");
+
+		$(".p-login input[name=login]").attr("disabled", true);
+		$(".p-login input[name=login]").css("background-color", "#FFFFFF");
+
 		$("#button-change").hide();
 		$("#button-save").show();
 

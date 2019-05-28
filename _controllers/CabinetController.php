@@ -36,41 +36,27 @@ class CabinetController
 			Ajax::catch(function()
 			{
 				$data = $_POST;
-				$user = R::count("users", "login = ?", array($data["login"]));
 
-				if ( ($user > 0) && ( Session::get("user", "login") != $data["login"] ) )
-				{
-					echo json_encode(["error" => "Логин " . $data["login"] . " уже занят!"]);
-				}
-				else
-				{
-					$oldlogin = Session::get("user", "login");
-					unset($_SESSION["user"]);
-					unset($user);
+				$login = Session::get("user", "login");
+				unset($_SESSION["user"]);
+				unset($user);
 
-					$user = R::findOne("users", "login = ?", array($oldlogin));
-					$user->login = $data["login"];
-					$user->email = $data["email"];
-					unset($_SESSION["user"]);
-					$_SESSION["user"] = serialize($user);
-					R::store($user);
+				$user = R::findOne("users", "login = ?", array($login));
+				$user->email = $data["email"];
+				unset($_SESSION["user"]);
+				$_SESSION["user"] = serialize($user);
+				R::store($user);
 
-					$profile = R::findOne("profile", "login = ?", array($oldlogin));
-					$profile->login      = $data["login"];
-					$profile->name       = $data["name"];
-					$profile->surname    = $data["surname"];
-					$profile->patronymic = $data["patronymic"];
-					$profile->phone      = $data["phone"];
-					unset($_SESSION["profile"]);
-					$_SESSION["profile"] = serialize($profile);
-					R::store($profile);
+				$profile = R::findOne("profile", "login = ?", array($login));
+				$profile->name       = $data["name"];
+				$profile->surname    = $data["surname"];
+				$profile->patronymic = $data["patronymic"];
+				$profile->phone      = $data["phone"];
+				unset($_SESSION["profile"]);
+				$_SESSION["profile"] = serialize($profile);
+				R::store($profile);
 
-					$seat = R::findOne("seat", "login = ?", array($oldlogin));
-					$seat->login = $data["login"];
-					R::store($seat);
-					
-					echo json_encode(["success" => "Сохранено!"]);
-				}
+				echo json_encode(["success" => "Сохранено!"]);
 
 			});
 		}, False);
@@ -125,12 +111,14 @@ class CabinetController
 				}
 				else
 				{
+					date_default_timezone_set('Asia/Almaty');
 					$data = $_POST["data"];
 					$seat = R::dispense('seat');
 					$seat->login  = Session::get('user', 'login');
 					$seat->seat   = json_encode($data);
 					$seat->iden   = Str::random(0,0,9);
 					$seat->code   = Str::random(2,2,6);
+					$seat->date   = date("Y-m-d H:i:s");
 					$seat->status = 0;
 					R::store($seat);
 					/*unset($seat);

@@ -97,12 +97,13 @@ class LoginController
 
 				if (empty($errors))
 
-				{
+				{	
+					date_default_timezone_set('Asia/Almaty');
 					$user = R::dispense('users');
 					$user->login    = $data["login"];
 					$user->email    = $data["email"];
 					$user->password = password_hash($data["password"], PASSWORD_DEFAULT);
-					$user->r_token  = 'token';
+					$user->role     = 'user';
 					$user->date     = date("Y-m-d H:i:s");
 					R::store($user);
 
@@ -111,7 +112,6 @@ class LoginController
 					$profile->name       = "";
 					$profile->surname    = "";
 					$profile->patronymic = "";
-					$profile->photo      = "";
 					$profile->phone      = "";
 					R::store($profile);
 
