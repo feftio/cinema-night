@@ -448,7 +448,7 @@ hr:after {
 
 
 
-@media (max-width: 700px) {
+@media (max-width: 720px) {
 
   .hole-block {
   	width: 100%;
@@ -494,6 +494,10 @@ hr:after {
 
   .tickets-block {
   	width: 100%;
+  }
+
+  .ticket {
+  	width: 95%;
   }
 
 }

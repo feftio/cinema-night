@@ -100,10 +100,12 @@ $seats = R::find("seat", "login = ? AND status = 1", array(Session::get('user', 
 				<div class="tickets-block">
 
 
-	<?php	foreach ($seats as $seat) { 
-				$num++;
+	<?php	
+		foreach ($seats as $seat) 
+		{ 
+			$num++;
 
-		?>
+	?>
 
 					<div class="ticket">
 						<h2 class="num-box"><?php echo $num; ?>.</h2>

@@ -9,7 +9,6 @@ class Config
 	[
 		'dirs.php'     => '/config/dirs.php',
 		'global.php'   => '/config/global.php',
-		'router.php'   => '/config/router.php',
 		'routes.php'   => '/config/routes.php',
 		'database.php' => '/config/database.php',
 		'csrf.php'     => '/config/csrf.php'
@@ -31,7 +30,6 @@ class Config
 		self::$dirs     = include_once ROOT . self::$SysPathes['dirs.php'];
 		self::$global   = include_once ROOT . self::$SysPathes['global.php'];
 		self::$routes   = include_once ROOT . self::$SysPathes['routes.php'];
-		self::$router   = include_once ROOT . self::$SysPathes['router.php'];
 		self::$database = include_once ROOT . self::$SysPathes['database.php'];
 		self::$csrf     = include_once ROOT . self::$SysPathes['csrf.php'];
 	}
@@ -61,18 +59,6 @@ class Config
 		else
 		{
 			return self::$global[$key];
-		}
-	}
-
-	public static function getrouter($key='')
-	{
-		if ($key === '')
-		{
-			return self::$router;
-		}
-		else
-		{
-			return self::$router[$key];
 		}
 	}
 
