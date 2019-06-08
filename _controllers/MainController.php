@@ -23,7 +23,7 @@ class MainController
 
 		]);
 
-		View::render('main.php');
+		view('main.php');
 	}
 
 //	**************************************************
