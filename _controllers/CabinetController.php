@@ -18,8 +18,7 @@ class CabinetController
 				'css' => [
 					'parts/wrapper.css',
 					'parts/nav.css',
-					'cabinet.css',
-					'parts/footer.css']
+					'cabinet.css' ]
 				]);
 
 			view("cabinet.php");

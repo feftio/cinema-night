@@ -63,6 +63,8 @@
 
 			</section>
 
+			<?php if (Session::get("user", "role") != "admin") { ?>
+
 			<section class="content">
 
 				<div class="choose-text-block">
@@ -148,22 +150,21 @@ $seats = R::find("seat", "login = ? AND status = 1", array(Session::get('user', 
 <?php } ?>
 
 
+		</div>
+
 	</div>
 
-		<?php View::render('parts/footer.php') ?>
-</div>
-	<?php View::render('parts/scripts.php') ?>
+			<?php } ?>
+
+	<?php view('parts/scripts.php') ?>
 </body>
-
-
 
 
 <script type="text/javascript">
 $(document).ready(function()
 {	
 
-
-	//-------------------------------------------------
+//-------------------------------------------------//
 
 	var CinemaStruct = {
 		'1' : [16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16]
@@ -217,7 +218,7 @@ function showBaySeat() {
   $('.result').html(result);
 }
 
-//-------------------------------------------------
+//-------------------------------------------------//
 
 	$.ajax({
 			type: "POST",
@@ -250,7 +251,7 @@ function showBaySeat() {
 			}
 		});
 
-//-------------------------------------------------
+//-------------------------------------------------//
 
 	$("#button-take").click(function(event)
 	{
@@ -304,12 +305,8 @@ function showBaySeat() {
 
 	});
 
+//-------------------------------------------------//
 
-
-
-
-
-//-------------------------------------------------
 	$("#button-change").click(function(event)
 	{
 
@@ -324,6 +321,8 @@ function showBaySeat() {
 		$("#button-save").show();
 
 	});
+
+//-------------------------------------------------//
 
 	 $("#profileForm").submit(function()
     {

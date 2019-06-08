@@ -6,6 +6,7 @@
 return
 [
 	'id([0-9]{0,10}$)' => 'id/index/$1',
+	'wipe([0-9]{0,10}$)' => 'ticket/wipe/$1',
 	'ticket([0-9]{0,10}$)' => 'ticket/index/$1',
 	'login/chlogin' => 'login/chlogin',
 	'login/chreg' => 'login/chreg',
