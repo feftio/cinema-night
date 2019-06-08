@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 
-<?php View::render('parts/head.php') ?>
+<?php view('parts/head.php') ?>
 
 <body>
 	<div class="wrapper">
@@ -9,7 +9,7 @@
 		<header class="header">
 			<div class="header__overlay"></div>
 			
-			<?php View::render('parts/nav.php') ?>
+			<?php view('parts/nav.php') ?>
 
 			<section class="header__text">
 				<div class="header__text__block">
@@ -45,11 +45,11 @@
 		</section>
 		
 
-		<?php View::render('parts/footer.php') ?>
+		<?php view('parts/footer.php') ?>
 
 	</div>
 
-<?php View::render('parts/scripts.php') ?>
+<?php view('parts/scripts.php') ?>
 
 </body>
 

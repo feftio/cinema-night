@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 
-<?php View::render('parts/head.php') ?>
+<?php view('parts/head.php') ?>
 
 <body>
 	<div class="container">

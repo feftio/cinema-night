@@ -5,8 +5,10 @@
 class DocController 
 {
 
+
 //	**************************************************
 //	**************************************************
+
 
 	public function actionIndex()
 	{
@@ -16,15 +18,18 @@ class DocController
 			'css' => [
 				'parts/wrapper.css',
 				'parts/nav.css',
-				'parts/footer.css'
+				'parts/footer.css',
+				'doc.css'
 			]
 
 		]);
 
-		View::render('doc.php');
+		view('doc.php');
 	}
+
 
 //	**************************************************
 //	**************************************************
+
 
 }

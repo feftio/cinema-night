@@ -7,7 +7,7 @@
 	<div class="wrapper">
 		<div class="wrapper__navigation" id="wrapper__navigation"></div>
 			
-		<?php View::render('parts/nav.php') ?>
+		<?php view('parts/nav.php') ?>
 
 		<header class="header">
 		</header>
@@ -257,8 +257,6 @@ function showBaySeat() {
 
 		event.preventDefault();
 
-		//console.log($('.bay'));
-
 		var answ = "";
 		var arr = [];
 
@@ -300,21 +298,9 @@ function showBaySeat() {
 
 				});
 
-
-
-
 			}
 
 		});
-
-
-	/*$.each(JSON.parse(responce), function(key1, item1) {
-		$.each(item1, function(key, item) {
-			console.log(key + ' ' + item);
-		});
-	});*/
-
-
 
 	});
 

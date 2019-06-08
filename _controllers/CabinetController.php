@@ -116,9 +116,6 @@ class CabinetController
 					$seat->date   = date("Y-m-d H:i:s");
 					$seat->status = 0;
 					R::store($seat);
-					/*unset($seat);
-					$seat = R::find("seat", "login = ?", array(Session::get('user', 'login')));
-					echo(json_encode($seat));*/
 					echo json_encode(["success" => "Запрос отправлен. Ждите звонка!"]);
 				}
 

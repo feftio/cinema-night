@@ -1,19 +1,63 @@
 <!DOCTYPE html>
 <html lang="ru">
 
-<?php View::render('parts/head.php'); ?>
+<?php view('parts/head.php'); ?>
 
 <body>
 	<div class="wrapper">
 		<div class="wrapper__navigation" id="wrapper__navigation"></div>
 
-			<?php View::render('parts/nav.php'); ?>
+		<?php view('parts/nav.php'); ?>
 
-		<?php View::render('parts/footer.php'); ?>
+		<div class="doc-block">
+			<div class="doc-block-wrapper">
+
+				<p><span style="font-family:tahoma,geneva,sans-serif">Взаимодействие пользователя начинается со вкладки &laquo;<a href="/login" style="color: #000000; font-size: 15px;">/login</a>&raquo;. Это вкладка обеспечивает регистрацию и авторизацию. Первоначально, переходя на страницу, появляется авторизационный блок.</span></p>
+
+				<hr />
+				<p><span style="font-family:tahoma,geneva,sans-serif">Для <strong>авторизации </strong>на сайте необходимо ввести логин и пароль, которые были внесены в базу после успешной регистрации. Если возникает необходимость просмотра введенного пароля, можно воспользоваться функцией просмотра текущего поля. Во включенном состоянии он находится в перечеркнутом виде.</span></p>
+
+				<p><span style="font-family:tahoma,geneva,sans-serif">Также, <u>авторизационная форма</u> имеет ряд обрабатываемых исключительных ситуаций. Если пользователь ввел валидный логин, но вписал неверный пароль &ndash; сработает соответствующее исключение.</span></p>
+
+				<hr />
+				<p><span style="font-family:tahoma,geneva,sans-serif">Неверно введенный логин также является исключительной ситуацией с выводимым предупреждением &laquo;Пользователя с таким логином не существует&raquo;.</span></p>
+
+				<p><span style="font-family:tahoma,geneva,sans-serif">Если у пользователя нет регистрационных данных и он хочет их приобрести, ему нужно нажать на надпись &laquo;Зарегистрироваться&raquo;, после чего окно с авторизацией смениться на регистрационный блок.</span></p>
+
+				<p><span style="font-family:tahoma,geneva,sans-serif"><em>Чтобы отдел администраторов мог оперативно связаться с пользователем, необходимо вписать свои личные данные в форме.</em> Для корректировки нужно нажать на кнопку &laquo;На регистрационном блоке есть четыре необходимых поля, для осуществления регистрации на сайте. После ввода валидных данных, необходимо нажать на кнопку &laquo;Создать&raquo;.</span></p>
+
+				<hr />
+				<p><span style="font-size:16px"><tt><u><span style="font-family:tahoma,geneva,sans-serif">Если регистрация прошла успешно, всплывет соответствующая надпись, и через 3 секунды окно смениться на авторизационный блок.</span></u></tt></span></p>
+
+				<p><span style="font-family:tahoma,geneva,sans-serif">Введя регистрационные данные, пользователя со страницы &laquo;/login&raquo; переведет на главную страницу сайта. Далее в навигационном меню необходимо нажать на ссылку &laquo;Кабинет&raquo;.</span></p>
+
+				<p><span style="font-family:tahoma,geneva,sans-serif">Далее, пользователь перейдет на основной блок системы, где он сможет использовать функционал личного кабинета.</span></p>
+
+				<p><span style="font-family:tahoma,geneva,sans-serif">Если у пользователя есть желание пойти на один из сеансов &laquo;Киноночи&raquo;, ему следует найти блок выбора мест. <span style="color:#800080">Фиолетовым цветом обозначаются</span></span></p>
+
+				<p><span style="font-family:tahoma,geneva,sans-serif"><span style="color:#800080">забронированные места</span>. <span style="color:#FF0000">Красным цветом &ndash; места, выбранные пользователем</span>. <span style="color:#00cc00">Зеленым &ndash; свободные места</span>.</span></p>
+
+				<p><span style="font-family:tahoma,geneva,sans-serif">После выбора мест нужно нажать на кнопку &laquo;Забронировать&raquo;. В случае, если пользователь не выбрал никаких мест, всплывет предупреждение &laquo;Выберите место&raquo;.</span></p>
+
+				<hr />
+				<p><span style="font-family:tahoma,geneva,sans-serif">При корректном ответе системы на проделанные операции, всплывет надпись &laquo;Запрос отправлен. Ждите звонка!&raquo;. <span style="color:#993333"><em><strong>Через 5-10 минут с пользователем, по указанному им номеру в профиле, свяжется оператор. В конце разговора, если оператор одобрил бронирование, он выдаст билет с выбранными местами.</strong></em></span></span></p>
+
+				<p><span style="font-family:tahoma,geneva,sans-serif">Далее, в кабинете пользователя появится новый блок под названием &laquo;<strong>Забронированные билеты</strong>&raquo;, в котором будет отображаться все одобренные операции по брони от оператора. Если пользователь имеет хоть один закрепленный за ним билет, то после блока с выбором мест будет отображаться</span></p>
+
+				<p><span style="font-family:tahoma,geneva,sans-serif">перечень его билетов. Все билеты будут отображаться в хронологическом порядке.</span></p>
+
+				<p><span style="font-family:tahoma,geneva,sans-serif">Чтобы воспользоваться данным билетом, необходимо перейти по ссылке указанным после наклонной черты (&quot;<strong>/</strong>&quot;). Откроется pdf-файл с идентификационным ключом.</span></p>
+
+				<hr />
+				<p><span style="font-family:tahoma,geneva,sans-serif">Далее, лишь необходимо обратиться в кассу с данным ключом для подтверждения достоверности указанных в билете данных и пройти на сеанс.</span></p>
+
+			</div>
+		</div>
+		<?php view('parts/footer.php'); ?>
 		
 	</div>
 
-	<?php View::render('parts/scripts.php'); ?>
+	<?php view('parts/scripts.php'); ?>
 
 </body>
 </html>

@@ -2,7 +2,6 @@
 /**
  * 
  */
-
 class Config
 {
 	private static $SysPathes = 
