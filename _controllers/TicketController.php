@@ -11,17 +11,15 @@ class TicketController
 
 	public function actionIndex($params)
 	{
-		$bean = R::findOne("seat", "login = ? AND iden = ? AND status = 1", array(Session::get("user", "login"), $params[0]));
-
-		if ((!session_is("user") || Session::get("user", "role") == "admin") || (is_null($bean)))
+		if (session_is("user"))
 		{
-			header("Location: /");
+			$bean = R::findOne("seat", "iden = ? AND status = 1", array($params[0]));
 		}
-		else
-		{
 
+		if ( ((!is_null($bean))&&(Session::get("user", "role") == "admin")) || ( (!is_null($bean)) && (Session::get("user", "login") == $bean->login) ) )
+		{
 			$IDEN  = $params[0];
-			$LOGIN = Session::get("user", "login");
+			$LOGIN = $bean->login;
 			$CODE = $bean->code;
 
 			G::setvar(False, [
@@ -31,6 +29,11 @@ class TicketController
 			]);
 
 			view("ticketing.php");
+			
+		}
+		else
+		{
+			header("Location: /login");
 		}
 	}
 

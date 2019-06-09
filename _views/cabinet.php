@@ -58,6 +58,16 @@
 
 			</section>
 
+			<section class="content">
+				<div class="choose-block">
+					<h2 class="choose-text">Сеанс</h2>
+				</div>
+
+				<div class="session-block">
+					
+				</div>
+			</section>
+
 			<?php if (Session::get("user", "role") != "admin") { ?>
 
 			<section class="content">
