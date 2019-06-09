@@ -57,25 +57,26 @@ foreach (json_decode($seats) as $seat)
 
 $pdf->SetFont('Courier','',10);
 $pdf->SetXY(65, 10);
-$pdf->MultiCell(135, 6, $TEXT_HEADER, 1, 'C');	//	($w, $h, $txt, $border=0, $align='J', $fill=false)
+$pdf->MultiCell(135, 6, $TEXT_HEADER, 1, 'C');
 
 $pdf->SetXY(65, 77);
 
 //***************************************************************
+$qr_code = 'http://' . $_SERVER['HTTP_HOST'] . '/wipe' . $iden;
 
 $pdf->SetDrawColor(0,0,0);
 $pdf->SetFillColor(0,0,0);
 
-$qrcode = new QrCode($bean->code,'M');
+$qrcode = new QrCode($qr_code,'M');
 $qrcode->displayFPDF($pdf,10,10,50);
 
-$qrcode1 = new QrCode($bean->code,'H');
+$qrcode1 = new QrCode($qr_code,'H');
 $qrcode1->displayFPDF($pdf,11,61,15);
 
-$qrcode2 = new QrCode($bean->code,'L');
+$qrcode2 = new QrCode($qr_code,'L');
 $qrcode2->displayFPDF($pdf,27.5,61,15);
 
-$qrcode3 = new QrCode($bean->code,'Q');
+$qrcode3 = new QrCode($qr_code,'Q');
 $qrcode3->displayFPDF($pdf,44,61,15);
 
 $pdf->Output($login . '_' . $iden . '.pdf','I');
