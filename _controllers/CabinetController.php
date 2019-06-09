@@ -107,12 +107,22 @@ class CabinetController
 				{
 					date_default_timezone_set('Asia/Almaty');
 					$data = $_POST["data"];
+					$kof = 0;
+					foreach ($data as $key) {
+						$kof++;
+					}
+
+					$prices = R::findOne("prices", "status = 1");
+					$price = $prices->price;
+
+
 					$seat = R::dispense('seat');
 					$seat->login  = Session::get('user', 'login');
 					$seat->seat   = json_encode($data);
 					$seat->iden   = Str::random(0,0,9);
 					$seat->code   = Str::random(2,2,6);
 					$seat->date   = date("Y-m-d H:i:s");
+					$seat->price  = $kof*$price;
 					$seat->status = 0;
 					R::store($seat);
 					echo json_encode(["success" => "Запрос отправлен. Ждите звонка!"]);

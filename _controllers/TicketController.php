@@ -51,6 +51,7 @@ class TicketController
 			$bean = R::findOne("seat", "iden = ? AND status = 1", array($params[0]));
 			$bean->status = 2;
 			R::store($bean);
+			header("Location: /cabinet");
 		}
 		else
 		{

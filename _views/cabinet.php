@@ -58,20 +58,68 @@
 
 			</section>
 
+<?php
+$prices = R::findOne("prices", "status = 1");
+$price = $prices->price;
+$films = R::find("films", "status = 1 LIMIT 3");
+?>
+
 			<section class="content">
 				<div class="choose-block">
 					<h2 class="choose-text">Сеанс</h2>
 				</div>
 
-				<div class="session-block">
-					
+				<div class="session-block fixed-film">
+
+					<?php foreach ($films as $film): ?>
+						
+					<div class="film-block f_film">
+						<h2><?php echo $film->num ?> фильм</h2>
+						<div class="film-info-block">
+							<table>
+								<tbody>
+									<tr class="tr-name">
+										<td>Название:</td>
+										<td><?php echo $film->name ?></td>
+									</tr>
+									<tr class="tr-jenre">
+										<td>Жанр:</td>
+										<td><?php echo $film->genre ?></td>
+									</tr>
+									<tr class="tr-producer">
+										<td>Режиссер: </td>
+										<td><?php echo $film->producer ?></td>
+									</tr>
+									<tr class="tr-year">
+										<td>Год выпуска: </td>
+										<td><?php echo $film->year ?></td>
+									</tr>
+									<tr class="tr-year">
+										<td>Язык: </td>
+										<td><?php echo $film->lang ?></td>
+									</tr>
+									<tr class="tr-about">
+										<td >Краткое описание: </td>
+										<td><?php echo $film->about ?></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<?php endforeach ?>
+
 				</div>
+				<div class="price-block">
+						<p class="price-string">Цена сеанса: <?php echo $price; ?><p class="tenge"><i class="fas fa-tenge"></i></p></p>
+				</div>
+
 			</section>
 
 			<?php if (Session::get("user", "role") != "admin") { ?>
 
 			<section class="content">
-				<div class="choose-text-block">
+				<div class="choose-block">
 					<h2 class="choose-text">Выберите место</h2>
 				</div>
 				<div class="hole-block">
@@ -86,7 +134,6 @@
 					<button class="button-take button" id="button-take">Забронировать</button>
 				</div>
 			</section>
-
 
 <?php 
 $num = 0;
@@ -132,6 +179,14 @@ $seats = R::find("seat", "login = ? AND status = 1", array(Session::get('user', 
 							<p class="box-place">Место: <?php echo $column; ?></p>
 						<?php } ?>
 
+						</div>
+
+						<div class="ticket-price-block">
+							<p class="price-string-for-ticket"><?php echo $seat->price; ?>
+								<p class="tenge">
+									<i class="fas fa-tenge"></i>
+								</p>
+							</p>
 						</div>
 					</div>
 

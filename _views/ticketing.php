@@ -42,7 +42,7 @@ $pdf->MultiCell(50,7,"Логин: $login",1,'C');
 
 $pdf->SetFont('Arial','U',12);
 $pdf->SetY(91);
-$pdf->MultiCell(50,14,'Цена: 800тг',1,'C');
+$pdf->MultiCell(50,14,'Цена: ' . $bean->price . 'тг',1,'C');
 
 $pdf->SetFont('Arial','',10);
 $num = 105;
