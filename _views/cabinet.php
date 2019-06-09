@@ -9,11 +9,8 @@
 			
 		<?php view('parts/nav.php') ?>
 
-		<header class="header">
-		</header>
-		<section class="modal" id="modal" style="display: none;">
+		<header class="header"></header>
 
-		</section>
 		<div class="container">
 
 			<div class="box__photo">
@@ -45,12 +42,10 @@
 						<div class="p-login responce" id="responce">
 							
 						</div>
-
 						<div class="p-login butts">
 							<button class="button-save button" id="button-save" name="button-save" style="display: none;">Сохранить</button>
 							<button class="button-change button" id="button-change" name="button-change button" style="display: block;">Изменить</button>
 						</div>
-
 					</form>
 				</div>
 
@@ -66,11 +61,9 @@
 			<?php if (Session::get("user", "role") != "admin") { ?>
 
 			<section class="content">
-
 				<div class="choose-text-block">
 					<h2 class="choose-text">Выберите место</h2>
 				</div>
-
 				<div class="hole-block">
 					<div class="cinema room">
 						
@@ -83,8 +76,6 @@
 					<button class="button-take button" id="button-take">Забронировать</button>
 				</div>
 			</section>
-
-		
 
 
 <?php 
@@ -102,11 +93,10 @@ $seats = R::find("seat", "login = ? AND status = 1", array(Session::get('user', 
 				<div class="tickets-block">
 
 
-	<?php	
-		foreach ($seats as $seat) 
-		{ 
-			$num++;
-
+	<?php 
+	foreach ($seats as $seat) 
+	{ 
+		$num++;
 	?>
 
 					<div class="ticket">
@@ -120,43 +110,40 @@ $seats = R::find("seat", "login = ? AND status = 1", array(Session::get('user', 
 						</div>
 
 						<div class="places">
+
 						<?php
 
 						foreach (json_decode($seat->seat) as $value) {
 							$row = explode(",", $value)[0];
 							$column = explode(",", $value)[1];
-						?>	
 
+						?>	
 							<p>Ряд: <?php echo $row; ?></p>
 							<p class="box-place">Место: <?php echo $column; ?></p>
-
-
 						<?php } ?>
 
-
-
-						
-
 						</div>
+					</div>
 
-				</div>
-			
-
-	<?php } ?>
+	<?php 
+	} 
+	?>
 
 				</div>
 			</section>
 
-<?php } ?>
-
+<?php 
+} 
+?>
+			<?php 
+			} 
+			?>
 
 		</div>
-
 	</div>
 
-			<?php } ?>
-
 	<?php view('parts/scripts.php') ?>
+	
 </body>
 
 

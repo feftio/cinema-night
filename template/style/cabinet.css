@@ -57,10 +57,8 @@ hr:after {
   height: 100px;
   width: 100%;
   border-top-right-radius: 20px;
-  border-top-left-radius: 20px;/*
-  border-bottom-right-radius: 50px;
-  border-bottom-left-radius: 50px;*/
-  background-color: #2C2C2C;/*#F2CD4C;*/
+  border-top-left-radius: 20px;
+  background-color: #2C2C2C;
   z-index: -2;
 }
 
@@ -235,7 +233,6 @@ hr:after {
   border-radius: 50px;
 }
 
-
 /*----------------------------*/
 
 .choose-text {
@@ -253,7 +250,6 @@ hr:after {
   align-items: center;
   margin-top: 40px;
 }
-
 
 /*----------------------------*/
 
@@ -276,8 +272,6 @@ hr:after {
   display: block;
   margin: 0 auto;
   text-align: center;
-  /*width: 540px;*/
-
 }
 
 .seat {
@@ -317,7 +311,6 @@ hr:after {
   cursor: unset;
 }
 
-
 /*----------------------------*/
 
 .choose-text-block {
@@ -332,7 +325,6 @@ hr:after {
 .choose-text {
   padding: 20px;
 }
-
 
 .block-take {
   display: block;
@@ -440,13 +432,7 @@ hr:after {
   background-color: #282828;
 }
 
-
-
-
 /*----------------------------*/
-
-
-
 
 @media (max-width: 720px) {
 

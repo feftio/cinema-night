@@ -2,22 +2,32 @@ body {
 	background-color: #FFFFFF;
 }
 
+p {
+	color: #000000;
+}
+
+/*-----------------*/
+
 .doc-block {
 	display: block;
-	margin-top: 100px;
-	margin-bottom: 30px;
+	margin: 100px 30px 30px 30px;
 	background-color: #FFFFFF;
-	border-left: 100px solid black;
-	border-right: 100px solid black;
-	border-radius: 200px;
-	 box-shadow: 0 3px 6px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.10);
+	border-radius: 50px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.15), 0 3px 6px rgba(0,0,0,0.10);
 }
 
 .doc-block-wrapper {
 	display: block;
-	padding: 50px 70px
+	padding: 50px 100px
 }
 
-p {
-	color: #000000;
+/*-----------------*/
+
+@media (max-width: 650px) {
+
+	.doc-block-wrapper {
+		text-align: center;
+		padding: 20px 30px;
+	}
+
 }
