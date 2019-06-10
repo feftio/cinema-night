@@ -62,7 +62,6 @@ class CabinetController
 				R::store($profile);
 
 				echo json_encode(["success" => "Сохранено!"]);
-
 			});
 		}, False);
 	}
@@ -115,13 +114,14 @@ class CabinetController
 					$prices = R::findOne("prices", "status = 1");
 					$price = $prices->price;
 
-
 					$seat = R::dispense('seat');
 					$seat->login  = Session::get('user', 'login');
 					$seat->seat   = json_encode($data);
 					$seat->iden   = Str::random(0,0,9);
 					$seat->code   = Str::random(2,2,6);
 					$seat->date   = date("Y-m-d H:i:s");
+					$seat->cost   = $price;
+					$seat->kof    = $kof;
 					$seat->price  = $kof*$price;
 					$seat->status = 0;
 					R::store($seat);
@@ -141,9 +141,10 @@ class CabinetController
 	{
 		Post::catch(function() {
 			Ajax::catch(function() {
-	
+
 				$seat = R::find("seat", "status = 1");
 				echo(json_encode($seat));
+
 			});
 		});
 	}

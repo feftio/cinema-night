@@ -1,5 +1,5 @@
 <?php
-require ROOT . '\config\user\pdf.php';
+
 require ROOT . '\template\lib\pdf\fpdf.php';
 require ROOT . '\template\lib\pdf\qr-code\qrcode.class.php';
 
@@ -21,63 +21,54 @@ foreach (json_decode($seats) as $seat)
 }
 
 $pdf = new FPDF();
-$pdf->AddPage($Orientation);
-$pdf->SetAuthor($Author);
+$pdf->AddPage('P');
+$pdf->SetAuthor('Ticketing');
 $pdf->SetTitle($login . '_' . $iden);
 
 define('FPDF_FONTPATH',ROOT . "template/lib/pdf/font/");
 $pdf->AddFont('Arial','','arial.php'); 
-$pdf->SetFont('Arial','',10);
+$pdf->SetFont('Arial','',12);
 
 //***************************************************************
+$pdf->SetXY(68,110);
+$pdf->Cell(75,7,$bean->code . "\n | \n" . $iden,1,1,'C');
 
-$pdf->SetY(77);
-$pdf->Cell(50,7,$bean->code,1,1,'C');
+$pdf->SetXY(68, 117);
+$pdf->MultiCell(75,7,"Логин: $login",1,'C');
 
-$pdf->SetY(60);
-$pdf->Cell(50, 17, '', 1,1);
-
-$pdf->SetY(84);
-$pdf->MultiCell(50,7,"Логин: $login",1,'C');
-
-$pdf->SetFont('Arial','U',12);
-$pdf->SetY(91);
-$pdf->MultiCell(50,14,'Цена: ' . $bean->price . 'тг',1,'C');
+$pdf->SetFont('Arial','U',13);
+$pdf->SetXY(60, 124);
+$pdf->MultiCell(91,10,"Цена: " . $bean->price . 'тг(' . $bean->cost . 'тг/шт)',1,'C');
 
 $pdf->SetFont('Arial','',10);
-$num = 105;
+$num = 134;
 foreach (json_decode($seats) as $seat)
 {
 	$row = explode(",", $seat)[0];
 	$column = explode(",", $seat)[1];
-	$pdf->SetY($num);
-	$pdf->MultiCell(50,5,'Ряд: ' . $row . '|' . 'Место: ' . $column,1,'C');
+	$pdf->SetXY(60,$num);
+	$pdf->MultiCell(91,5,'Ряд: ' . $row . '|' . 'Место: ' . $column,1,'C');
 	$num += 5;
 }
 
-$pdf->SetFont('Courier','',10);
-$pdf->SetXY(65, 10);
-$pdf->MultiCell(135, 6, $TEXT_HEADER, 1, 'C');
-
-$pdf->SetXY(65, 77);
-
 //***************************************************************
+
 $qr_code = 'http://' . $_SERVER['HTTP_HOST'] . '/wipe' . $iden;
 
 $pdf->SetDrawColor(0,0,0);
 $pdf->SetFillColor(0,0,0);
 
 $qrcode = new QrCode($qr_code,'M');
-$qrcode->displayFPDF($pdf,10,10,50);
+$qrcode->displayFPDF($pdf,68,10,75);
 
 $qrcode1 = new QrCode($qr_code,'H');
-$qrcode1->displayFPDF($pdf,11,61,15);
+$qrcode1->displayFPDF($pdf,68,85,25);
 
 $qrcode2 = new QrCode($qr_code,'L');
-$qrcode2->displayFPDF($pdf,27.5,61,15);
+$qrcode2->displayFPDF($pdf,93,85,25);
 
 $qrcode3 = new QrCode($qr_code,'Q');
-$qrcode3->displayFPDF($pdf,44,61,15);
+$qrcode3->displayFPDF($pdf,118,85,25);
 
 $pdf->Output($login . '_' . $iden . '.pdf','I');
 ?>

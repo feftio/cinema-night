@@ -78,27 +78,31 @@ $films = R::find("films", "status = 1 LIMIT 3");
 						<div class="film-info-block">
 							<table>
 								<tbody>
-									<tr class="tr-name">
+									<tr>
 										<td>Название:</td>
 										<td><?php echo $film->name ?></td>
 									</tr>
-									<tr class="tr-jenre">
+									<tr>
 										<td>Жанр:</td>
 										<td><?php echo $film->genre ?></td>
 									</tr>
-									<tr class="tr-producer">
+									<tr>
 										<td>Режиссер: </td>
 										<td><?php echo $film->producer ?></td>
 									</tr>
-									<tr class="tr-year">
+									<tr>
 										<td>Год выпуска: </td>
 										<td><?php echo $film->year ?></td>
 									</tr>
-									<tr class="tr-year">
+									<tr>
+										<td >Продолжительность: </td>
+										<td><?php echo $film->time ?></td>
+									</tr>
+									<tr>
 										<td>Язык: </td>
 										<td><?php echo $film->lang ?></td>
 									</tr>
-									<tr class="tr-about">
+									<tr>
 										<td >Краткое описание: </td>
 										<td><?php echo $film->about ?></td>
 									</tr>
@@ -158,7 +162,7 @@ $seats = R::find("seat", "login = ? AND status = 1", array(Session::get('user', 
 
 					<div class="ticket">
 						<h2 class="num-box"><?php echo $num; ?>.</h2>
-						<a href="/ticket<?php echo $seat->iden; ?>" class="barcode">
+						<a href="/ticket<?php echo $seat->iden; ?>" target="_blank" class="barcode">
 							<i class="fas fa-qrcode"></i>
 						</a>
 

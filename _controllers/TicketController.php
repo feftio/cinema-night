@@ -14,27 +14,32 @@ class TicketController
 		if (session_is("user"))
 		{
 			$bean = R::findOne("seat", "iden = ? AND status = 1", array($params[0]));
-		}
 
-		if ( ((!is_null($bean))&&(Session::get("user", "role") == "admin")) || ( (!is_null($bean)) && (Session::get("user", "login") == $bean->login) ) )
-		{
-			$IDEN  = $params[0];
-			$LOGIN = $bean->login;
-			$CODE = $bean->code;
+			if ( ((!is_null($bean))&&(Session::get("user", "role") == "admin")) || ( (!is_null($bean)) && (Session::get("user", "login") == $bean->login) ) )
+			{
+				$IDEN  = $params[0];
+				$LOGIN = $bean->login;
+				$CODE = $bean->code;
 
-			G::setvar(False, [
-				'bean'  => $bean,
-				'iden'  => $IDEN,
-				'login' => $LOGIN
-			]);
+				G::setvar(False, [
+					'bean'  => $bean,
+					'iden'  => $IDEN,
+					'login' => $LOGIN
+				]);
 
-			view("ticketing.php");
-			
+				view("ticketing.php");
+			}
+			else
+			{
+				header("Location: /login");
+			}
+
 		}
 		else
 		{
 			header("Location: /login");
 		}
+
 	}
 
 
@@ -49,9 +54,17 @@ class TicketController
 		if (Session::get("user", "role") == "admin")
 		{
 			$bean = R::findOne("seat", "iden = ? AND status = 1", array($params[0]));
-			$bean->status = 2;
-			R::store($bean);
-			header("Location: /cabinet");
+
+			if (is_null($bean))
+			{
+				echo '[Некорректный iden]';
+			}
+			else
+			{
+				$bean->status = 2;
+				R::store($bean);
+				header("Location: /cabinet");
+			}
 		}
 		else
 		{
